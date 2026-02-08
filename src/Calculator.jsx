@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 
 import clickSound from './ClickSound.m4a'
 
@@ -7,13 +7,19 @@ function Calculator({ workouts, allowSound }) {
   const [sets, setSets] = useState(3)
   const [speed, setSpeed] = useState(90)
   const [durationBreak, setDurationBreak] = useState(5)
-  const [duration, setDuration] = useState(0)
+  const [delta, setDelta] = useState(0)
 
-  useEffect(() => {
-    const newDuration = (number * sets * speed) / 60 + (sets - 1) * durationBreak
-    setDuration(newDuration)
-  }, [number, sets, speed, durationBreak])
-  // const duration = (number * sets * speed) / 60 + (sets - 1) * durationBreak
+  // useEffect(() => {
+  //   const newDuration = (number * sets * speed) / 60 + (sets - 1) * durationBreak
+  //   setDuration(newDuration)
+  // }, [number, sets, speed, durationBreak])
+  const duration = (number * sets * speed) / 60 + (sets - 1) * durationBreak + delta
+
+  // const duration = useMemo(
+  //   () => (number * sets * speed) / 60 + (sets - 1) * durationBreak + delta,
+  //   [number, sets, speed, durationBreak, delta],
+  // )
+
   const mins = Math.floor(duration)
   const seconds = (duration - mins) * 60
 
@@ -25,10 +31,10 @@ function Calculator({ workouts, allowSound }) {
   }
 
   const handleInc = () => {
-    setDuration(duration => Math.floor(duration) + 1)
+    setDelta(delta => delta + 1)
   }
   const handleDec = () => {
-    setDuration(duration => Math.max(0, Math.ceil(duration) - 1))
+    setDelta(delta => Math.max(0, delta - 1))
   }
 
   return (
