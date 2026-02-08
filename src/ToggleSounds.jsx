@@ -1,4 +1,6 @@
-function ToggleSounds({ allowSound, setAllowSound }) {
+import * as React from 'react'
+
+function ToggleSoundsComponent({ allowSound, setAllowSound }) {
   return (
     <button
       className="btn-sound"
@@ -8,5 +10,6 @@ function ToggleSounds({ allowSound, setAllowSound }) {
     </button>
   )
 }
+const ToggleSounds = React.memo(ToggleSoundsComponent)
 
 export default ToggleSounds
