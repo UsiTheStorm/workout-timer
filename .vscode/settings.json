@@ -56,7 +56,7 @@
   // "[jsonc]": {
   //   "editor.defaultFormatter": "esbenp.prettier-vscode"
   // }
-   "[javascript]": {
+  "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[javascriptreact]": {

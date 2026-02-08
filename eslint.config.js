@@ -1,4 +1,4 @@
-import antfu from '@antfu/eslint-config';
+import antfu from '@antfu/eslint-config'
 
 export default antfu(
   {
@@ -63,4 +63,4 @@ export default antfu(
       'node/prefer-global/process': 'off',
     },
   },
-);
+)
