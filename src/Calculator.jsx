@@ -25,10 +25,10 @@ function Calculator({ workouts, allowSound }) {
   }
 
   const handleInc = () => {
-    setDuration(duration => duration + 1)
+    setDuration(duration => Math.floor(duration) + 1)
   }
   const handleDec = () => {
-    setDuration(duration => Math.max(0, duration - 1))
+    setDuration(duration => Math.max(0, Math.ceil(duration) - 1))
   }
 
   return (
