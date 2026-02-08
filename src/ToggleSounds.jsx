@@ -2,11 +2,11 @@ function ToggleSounds({ allowSound, setAllowSound }) {
   return (
     <button
       className="btn-sound"
-      onClick={() => setAllowSound((allow) => !allow)}
+      onClick={() => setAllowSound(allow => !allow)}
     >
-      {allowSound ? "🔈" : "🔇"}
+      {allowSound ? '🔈' : '🔇'}
     </button>
-  );
+  )
 }
 
-export default ToggleSounds;
+export default ToggleSounds
