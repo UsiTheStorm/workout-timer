@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
   const isGitHub = deployTarget === 'GH';
 
   return {
-    base: isGitHub ? '/YOUR-REPO/' : '/',
+    base: isGitHub ? '/workout-timer/' : '/',
 
     plugins: [
       react({
