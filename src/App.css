@@ -136,3 +136,62 @@ button {
   background-color: transparent;
   font-size: 3.2rem;
 }
+
+@media (max-width: 600px) {
+  main {
+    width: 100%;
+    padding: 3rem 2rem;
+    box-shadow: none;
+  }
+
+  form {
+    gap: 1rem;
+  }
+
+  form div {
+    flex-wrap: wrap;
+    /* gap: 1rem; */
+  }
+  form div label {
+    order: 1;
+  }
+  form div span {
+    order: 2;
+    margin-left: auto;
+  }
+  form div input {
+    order: 3;
+    width: 100%;
+  }
+
+  form div:first-child {
+    flex-wrap: nowrap;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  label {
+    width: auto;
+    font-size: 2rem;
+  }
+
+  select,
+  input[type='range'] {
+    width: 100%;
+  }
+
+  section {
+    width: 100%;
+    gap: 2rem;
+  }
+
+  p {
+    font-size: 5rem;
+  }
+
+  .btn-sound {
+    top: 1.6rem;
+    right: 1.6rem;
+  }
+}
