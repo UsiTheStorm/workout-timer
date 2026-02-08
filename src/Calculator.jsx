@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import { memo, useEffect, useMemo, useRef, useState } from 'react'
 
 import clickSound from './ClickSound.m4a'
 
@@ -7,22 +7,45 @@ function Calculator({ workouts, allowSound }) {
   const [sets, setSets] = useState(3)
   const [speed, setSpeed] = useState(90)
   const [durationBreak, setDurationBreak] = useState(5)
-  // const [delta, setDelta] = useState(0)
-  const [duration, setDuration] = useState(0)
+  const [delta, setDelta] = useState(0)
+  // const [duration, setDuration] = useState(0)
 
-  const playSound = useCallback(() => {
+  // const playSound = useCallback(() => {
+  //   if (!allowSound)
+  //     return
+  //   const sound = new Audio(clickSound)
+  //   sound.play()
+  // }, [allowSound])
+
+  const duration = (number * sets * speed) / 60 + (sets - 1) * durationBreak + delta
+  // const audio = useMemo(() => new Audio(clickSound), [])
+  const audioRef = useRef(new Audio(clickSound))
+
+  // const audio = new Audio(clickSound)
+  const playSound = () => {
     if (!allowSound)
       return
-    const sound = new Audio(clickSound)
-    sound.play()
-  }, [allowSound])
+
+    const audio = audioRef.current
+
+    audio.currentTime = 0
+    audio.play().catch(() => {
+
+    })
+  }
 
   useEffect(() => {
-    const newDuration = (number * sets * speed) / 60 + (sets - 1) * durationBreak
-    setDuration(newDuration)
+    // if (!allowSound)
+    //   return
+    // const sound = new Audio(clickSound)
+    // sound.play()
     playSound()
-  }, [number, sets, speed, durationBreak, playSound])
-  // const duration = (number * sets * speed) / 60 + (sets - 1) * durationBreak + delta
+  }, [duration, delta, allowSound])
+
+  // useEffect(() => {
+  //   const newDuration = (number * sets * speed) / 60 + (sets - 1) * durationBreak
+  //   setDuration(newDuration)
+  // }, [number, sets, speed, durationBreak])
 
   // const duration = useMemo(
   //   () => (number * sets * speed) / 60 + (sets - 1) * durationBreak + delta,
@@ -32,21 +55,21 @@ function Calculator({ workouts, allowSound }) {
   const mins = Math.floor(duration)
   const seconds = (duration - mins) * 60
 
-  // const handleInc = () => {
-  //   setDelta(delta => delta + 1)
-  // }
-  // const handleDec = () => {
-  //   setDelta(delta => Math.max(0, delta - 1))
-  // }
-
   const handleInc = () => {
-    setDuration(duration => Math.floor(duration) + 1)
-    playSound()
+    setDelta(delta => delta + 1)
   }
   const handleDec = () => {
-    setDuration(duration => Math.max(0, Math.ceil(duration) - 1))
-    playSound()
+    setDelta(delta => Math.max(0, delta - 1))
   }
+
+  // const handleInc = () => {
+  //   setDuration(duration => Math.floor(duration) + 1)
+  //   // playSound()
+  // }
+  // const handleDec = () => {
+  //   setDuration(duration => Math.max(0, Math.ceil(duration) - 1))
+  //   // playSound()
+  // }
 
   return (
     <>
