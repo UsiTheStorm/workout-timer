@@ -89,7 +89,7 @@ function Calculator({ workouts, allowSound }) {
           <input
             max="5"
             min="1"
-            onChange={e => setSets(e.target.value)}
+            onChange={e => setSets(+e.target.value)}
             type="range"
             value={sets}
           />
