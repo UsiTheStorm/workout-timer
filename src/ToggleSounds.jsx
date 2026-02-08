@@ -1,6 +1,6 @@
-import * as React from 'react'
+import { memo } from 'react'
 
-function ToggleSoundsComponent({ allowSound, setAllowSound }) {
+function ToggleSounds({ allowSound, setAllowSound }) {
   return (
     <button
       className="btn-sound"
@@ -10,6 +10,5 @@ function ToggleSoundsComponent({ allowSound, setAllowSound }) {
     </button>
   )
 }
-const ToggleSounds = React.memo(ToggleSoundsComponent)
 
-export default ToggleSounds
+export default memo(ToggleSounds)
